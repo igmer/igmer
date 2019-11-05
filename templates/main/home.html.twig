@@ -1,4 +1,12 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .vertical{
+            height: 60% ;!important;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     {{ parent() }}
     {% block main %}
@@ -83,39 +91,35 @@
                         <article>
                             <a href="#" class="image"><img src="{{ asset('images/tbapp.jpg') }}" alt="AppTB"  /></a>
                             <h3>AppTB</h3>
-                            <p>Aplicacion movil que permite manejar pacientes, casos y contactos, se puede registrar tratamiento y visitas. Trabaja de forma OffLine y sincroniza con un servidor remoto a peticion del usuario</p>
+                            <p>Aplicacion movil que permite manejar pacientes, casos y contactos, se puede registrar tratamiento y visitas. Trabaja de forma OffLine y sincroniza con un servidor remoto a peticion del usuario,creada con Android Nativa</p>
 
                         </article>
                         <article>
-                            <a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-                            <h3>Tempus ullamcorper</h3>
-                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+                            <a href="#" class="image"><img src="{{ asset('images/malaria.png') }}" alt="MalariaApp"  /></a>
+                            <h3>MalariaApp</h3>
+                            <p>Aplicacion diseñada para recolectar datos de campo utilizando mapas de Google para geolocalizacion, Android Nativa</p>
+
+                        </article>
+
+                        <article>
+                            <a href="#" class="image"><img src="{{ asset('images/web.png') }}" alt="VitroApp"  /></a>
+                            <h3>SINAVEC</h3>
+                            <p>Sistema Web Utilizado par el registro de información de vectores, cuenta con 5 modulos de ingreso de datos y 2 de reportería, creada con PHP y Symfony</p>
 
                         </article>
                         <article>
-                            <a href="#" class="image"><img src="{{ asset('images/pic04.jpg') }}" alt="" /></a>
-                            <h3>Sed etiam facilis</h3>
-                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button">More</a></li>
-                            </ul>
+                            <a href="#" class="image vertical"><img src="{{ asset('images/vitro.png') }}" alt="MalariaApp"  /></a>
+                            <h3>VitroApp</h3>
+                            <p>Progressive Web App para el control de citas, tratamiento y expediente de una clinica de fertilidad, esta creada con IONIC 4 y Angular 8</p>
+
                         </article>
                         <article>
-                            <a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-                            <h3>Feugiat lorem aenean</h3>
-                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button">More</a></li>
-                            </ul>
+                            <a href="#" class="image vertical"><img src="{{ asset('images/foodapp.png') }}" alt="MalariaApp"  /></a>
+                            <h3>VitroApp</h3>
+                            <p>Aplicacion que permite el control de clientes y pedidos de productos, incluye geolocalizacion de clientes,pedidos y usuario</p>
+
                         </article>
-                        <article>
-                            <a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-                            <h3>Amet varius aliquam</h3>
-                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button">More</a></li>
-                            </ul>
-                        </article>
+
                     </div>
                 </section>
 
