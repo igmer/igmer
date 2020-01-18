@@ -1,127 +1,149 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Igmer Rodriguez{% endblock %}</title>
-    {% block stylesheets %}
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
-    {% endblock %}
-</head>
-<body class="is-preload">
-{% block body %}
-<div id="main">
-    <div class="inner">
-    <header id="header">
-        <a href="index.html" class="logo"><strong>Blog</strong> Igmer Rodríguez</a>
-        <ul class="icons">
-            <li><a href="https://twitter.com/Igmerdz" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="https://www.facebook.com/IgmerRodriguez" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="https://github.com/igmer" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-            <li><a href="https://www.instagram.com/igmerdz/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-        </ul>
-    </header>
-    </div>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Igmer Rodriguez
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+			<link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+		{% endblock %}
+	</head>
+	<body class="is-preload">
+		{% block body %}
+			<div id="main">
+				<div class="inner">
+					<header id="header">
+						<a href="index.html" class="logo">
+							<strong>Blog</strong>
+							Igmer Rodríguez</a>
+						<ul class="icons">
+							<li>
+								<a href="https://twitter.com/Igmerdz" class="icon brands fa-twitter">
+									<span class="label">Twitter</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.facebook.com/IgmerRodriguez" class="icon brands fa-facebook-f">
+									<span class="label">Facebook</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://github.com/igmer" class="icon brands fa-github">
+									<span class="label">GitHub</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.instagram.com/igmerdz/" class="icon brands fa-instagram">
+									<span class="label">Instagram</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="icon brands fa-medium-m">
+									<span class="label">Medium</span>
+								</a>
+							</li>
+						</ul>
+					</header>
+				</div>
 
-    <div id="sidebar">
-        <div class="inner">
+				<div id="sidebar">
+					<div
+						class="inner">
 
+						<!-- Search -->
+						<section id="search" class="alt">
+							<form method="post" action="#">
+								<input type="text" name="query" id="query" placeholder="Search"/>
+							</form>
+						</section>
 
-            <!-- Search -->
-            <section id="search" class="alt">
-                <form method="post" action="#">
-                    <input type="text" name="query" id="query" placeholder="Search"/>
-                </form>
-            </section>
+						<!-- Menu -->
+						<nav id="menu">
+							<header class="major">
+								<h2>Menu</h2>
+							</header>
+							<ul>
+								<li>
+									<a href="{{ path('index') }}">Home</a>
+								</li>
+								{#										<li><a href="{{ path('utilidades') }}">Utilidades</a></li>#}
+								<li>
+									<a href="{{ path('mihistoria') }}">Mi Historia</a>
+								</li>
+								<li>
+									<span class="opener">Utilidades</span>
+									<ul>
+										<li><ahref="{{ path('crearcv') }}">Crear un Curriculum</a></li>
 
-            <!-- Menu -->
-            <nav id="menu">
-                <header class="major">
-                    <h2>Menu</h2>
-                </header>
-                <ul>
-                    <li><a href="{{ path('index') }}">Home</a></li>
-                    {#										<li><a href="{{ path('utilidades') }}">Utilidades</a></li>#}
-                    <li><a href="{{ path('mihistoria') }}">Mi Historia</a></li>
-                    <li>
-                        <span class="opener">Utilidades</span>
-                        <ul>
-                            <li><a href="{{ path('crearcv') }}">Crear un Curriculum</a></li>
+									</ul>
+								</li>
 
-                        </ul>
-                    </li>
-                    {#										<li><a href="#">Etiam Dolore</a></li>#}
-                    {#										<li><a href="#">Adipiscing</a></li>#}
-                    {#										<li>#}
-                    {#											<span class="opener">Another Submenu</span>#}
-                    {#											<ul>#}
-                    {#												<li><a href="#">Lorem Dolor</a></li>#}
-                    {#												<li><a href="#">Ipsum Adipiscing</a></li>#}
-                    {#												<li><a href="#">Tempus Magna</a></li>#}
-                    {#												<li><a href="#">Feugiat Veroeros</a></li>#}
-                    {#											</ul>#}
-                    {#										</li>#}
-                    {#										<li><a href="#">Maximus Erat</a></li>#}
-                    {#										<li><a href="#">Sapien Mauris</a></li>#}
-                    {#										<li><a href="#">Amet Lacinia</a></li>#}
-                </ul>
-            </nav>
+							</ul>
+						</nav>
 
-            <!-- Section -->
-            <section>
-                <header class="major">
-                    <h2>Ante interdum</h2>
-                </header>
-                <div class="mini-posts">
-                    <article>
-                        <a href="#" class="image"><img src="images/pic07.jpg" alt=""/></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic08.jpg" alt=""/></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic09.jpg" alt=""/></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                </div>
-                <ul class="actions">
-                    <li><a href="#" class="button">More</a></li>
-                </ul>
-            </section>
+						<!-- Section -->
+						<section>
+							<header class="major">
+								<h2>Ante interdum</h2>
+							</header>
+							<div class="mini-posts">
+								<article>
+									<a href="#" class="image"><img src="images/pic07.jpg" alt=""/></a>
+									<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+								</article>
+								<article>
+									<a href="#" class="image"><img src="images/pic08.jpg" alt=""/></a>
+									<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+								</article>
+								<article>
+									<a href="#" class="image"><img src="images/pic09.jpg" alt=""/></a>
+									<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+								</article>
+							</div>
+							<ul class="actions">
+								<li>
+									<a href="#" class="button">More</a>
+								</li>
+							</ul>
+						</section>
 
-            <!-- Section -->
-            <section>
-                <header class="major">
-                    <h2>Contáctame</h2>
-                </header>
-                <p>Si quieres asesoría en análisis, diseño o implementación sistemas puedes escribirme y con gusto
-                    hablamos.</p>
-                <ul class="contact">
-                    <li class="icon solid fa-envelope"><a href="#">igmerdz@gmail.com</a></li>
-                    <li class="icon solid fa-phone"><a href="tel:+503-77476504">+503-77476504</a></li>
-                    <li class="icon solid fa-home">San Salvador, El Salvador</li>
-                </ul>
-            </section>
+						<!-- Section -->
+						<section>
+							<header class="major">
+								<h2>Contáctame</h2>
+							</header>
+							<p>Si quieres asesoría en análisis, diseño o implementación sistemas puedes escribirme y con gusto
+								                    hablamos.</p>
+							<ul class="contact">
+								<li class="icon solid fa-envelope">
+									<a href="#">igmerdz@gmail.com</a>
+								</li>
+								<li class="icon solid fa-phone">
+									<a href="tel:+503-77476504">+503-77476504</a>
+								</li>
+								<li class="icon solid fa-home">San Salvador, El Salvador</li>
+							</ul>
+						</section>
 
-            <!-- Footer -->
-            <footer id="footer">
-                <p class="copyright">&copy; All rights reserved.</p>
-            </footer>
+						<!-- Footer -->
+						<footer id="footer">
+							<p class="copyright">&copy; All rights reserved.</p>
+						</footer>
 
-        </div>
-    </div>
-    </div>
-{% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/browser.min.js') }}"></script>
-    <script src="{{ asset('js/breakpoints.min.js') }}"></script>
-    <script src="{{ asset('js/util.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-{% endblock %}
-</body>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{% block javascripts %}
+			<script src="{{ asset('js/jquery.min.js') }}"></script>
+			<script src="{{ asset('js/browser.min.js') }}"></script>
+			<script src="{{ asset('js/breakpoints.min.js') }}"></script>
+			<script src="{{ asset('js/util.js') }}"></script>
+			<script src="{{ asset('js/main.js') }}"></script>
+		{% endblock %}
+	</body>
 </html>

@@ -1,262 +1,491 @@
-/*
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
-(function($) {
-
-	var	$window = $(window),
-		$head = $('head'),
-		$body = $('body');
-
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ '361px',   '480px'  ],
-			xxsmall:  [ null,      '360px'  ],
-			'xlarge-to-max':    '(min-width: 1681px)',
-			'small-to-xlarge':  '(min-width: 481px) and (max-width: 1680px)'
-		});
-
-	// Stops animations/transitions until the page has ...
-
-		// ... loaded.
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-preload');
-				}, 100);
-			});
-
-		// ... stopped resizing.
-			var resizeTimeout;
-
-			$window.on('resize', function() {
-
-				// Mark as resizing.
-					$body.addClass('is-resizing');
-
-				// Unmark after delay.
-					clearTimeout(resizeTimeout);
-
-					resizeTimeout = setTimeout(function() {
-						$body.removeClass('is-resizing');
-					}, 100);
-
-			});
-
-	// Fixes.
-
-		// Object fit images.
-			if (!browser.canUse('object-fit')
-			||	browser.name == 'safari')
-				$('.image.object').each(function() {
-
-					var $this = $(this),
-						$img = $this.children('img');
-
-					// Hide original image.
-						$img.css('opacity', '0');
-
-					// Set background.
-						$this
-							.css('background-image', 'url("' + $img.attr('src') + '")')
-							.css('background-size', $img.css('object-fit') ? $img.css('object-fit') : 'cover')
-							.css('background-position', $img.css('object-position') ? $img.css('object-position') : 'center');
-
-				});
-
-	// Sidebar.
-		var $sidebar = $('#sidebar'),
-			$sidebar_inner = $sidebar.children('.inner');
-
-		// Inactive by default on <= large.
-			breakpoints.on('<=large', function() {
-				$sidebar.addClass('inactive');
-			});
-
-			breakpoints.on('>large', function() {
-				$sidebar.removeClass('inactive');
-			});
-
-		// Hack: Workaround for Chrome/Android scrollbar position bug.
-			if (browser.os == 'android'
-			&&	browser.name == 'chrome')
-				$('<style>#sidebar .inner::-webkit-scrollbar { display: none; }</style>')
-					.appendTo($head);
-
-		// Toggle.
-			$('<a href="#sidebar" class="toggle">Toggle</a>')
-				.appendTo($sidebar)
-				.on('click', function(event) {
-
-					// Prevent default.
-						event.preventDefault();
-						event.stopPropagation();
-
-					// Toggle.
-						$sidebar.toggleClass('inactive');
-
-				});
-
-		// Events.
-
-			// Link clicks.
-				$sidebar.on('click', 'a', function(event) {
-
-					// >large? Bail.
-						if (breakpoints.active('>large'))
-							return;
-
-					// Vars.
-						var $a = $(this),
-							href = $a.attr('href'),
-							target = $a.attr('target');
-
-					// Prevent default.
-						event.preventDefault();
-						event.stopPropagation();
-
-					// Check URL.
-						if (!href || href == '#' || href == '')
-							return;
-
-					// Hide sidebar.
-						$sidebar.addClass('inactive');
-
-					// Redirect to href.
-						setTimeout(function() {
-
-							if (target == '_blank')
-								window.open(href);
-							else
-								window.location.href = href;
-
-						}, 500);
-
-				});
-
-			// Prevent certain events inside the panel from bubbling.
-				$sidebar.on('click touchend touchstart touchmove', function(event) {
-
-					// >large? Bail.
-						if (breakpoints.active('>large'))
-							return;
-
-					// Prevent propagation.
-						event.stopPropagation();
-
-				});
-
-			// Hide panel on body click/tap.
-				$body.on('click touchend', function(event) {
-
-					// >large? Bail.
-						if (breakpoints.active('>large'))
-							return;
-
-					// Deactivate.
-						$sidebar.addClass('inactive');
-
-				});
-
-		// Scroll lock.
-		// Note: If you do anything to change the height of the sidebar's content, be sure to
-		// trigger 'resize.sidebar-lock' on $window so stuff doesn't get out of sync.
-
-			$window.on('load.sidebar-lock', function() {
-
-				var sh, wh, st;
-
-				// Reset scroll position to 0 if it's 1.
-					if ($window.scrollTop() == 1)
-						$window.scrollTop(0);
-
-				$window
-					.on('scroll.sidebar-lock', function() {
-
-						var x, y;
-
-						// <=large? Bail.
-							if (breakpoints.active('<=large')) {
-
-								$sidebar_inner
-									.data('locked', 0)
-									.css('position', '')
-									.css('top', '');
-
-								return;
-
-							}
-
-						// Calculate positions.
-							x = Math.max(sh - wh, 0);
-							y = Math.max(0, $window.scrollTop() - x);
-
-						// Lock/unlock.
-							if ($sidebar_inner.data('locked') == 1) {
-
-								if (y <= 0)
-									$sidebar_inner
-										.data('locked', 0)
-										.css('position', '')
-										.css('top', '');
-								else
-									$sidebar_inner
-										.css('top', -1 * x);
-
-							}
-							else {
-
-								if (y > 0)
-									$sidebar_inner
-										.data('locked', 1)
-										.css('position', 'fixed')
-										.css('top', -1 * x);
-
-							}
-
-					})
-					.on('resize.sidebar-lock', function() {
-
-						// Calculate heights.
-							wh = $window.height();
-							sh = $sidebar_inner.outerHeight() + 30;
-
-						// Trigger scroll.
-							$window.trigger('scroll.sidebar-lock');
-
-					})
-					.trigger('resize.sidebar-lock');
-
-				});
-
-	// Menu.
-		var $menu = $('#menu'),
-			$menu_openers = $menu.children('ul').find('.opener');
-
-		// Openers.
-			$menu_openers.each(function() {
-
-				var $this = $(this);
-
-				$this.on('click', function(event) {
-
-					// Prevent default.
-						event.preventDefault();
-
-					// Toggle.
-						$menu_openers.not($this).removeClass('active');
-						$this.toggleClass('active');
-
-					// Trigger resize (sidebar lock).
-						$window.triggerHandler('resize.sidebar-lock');
-
-				});
-
-			});
-
-})(jQuery);
+$(document).ready(function () {
+    "use strict";
+
+    var window_width = $(window).width(),
+        window_height = window.innerHeight,
+        header_height = $(".default-header").height(),
+        header_height_static = $(".site-header.static").outerHeight(),
+        fitscreen = window_height - header_height;
+
+    $(".fullscreen").css("height", window_height)
+    $(".fitscreen").css("height", fitscreen);
+
+    //------- Wow JS Initialized --------// 
+    new WOW().init();
+
+    //------- Go to Top --------// 
+    $(window).on("scroll", function () {
+        if ($(this).scrollTop() > 100) {
+            $('#header1').addClass('header-scrolled1');
+            $('#back-top').addClass('back-top-animation');
+        } else {
+            $('#header1').removeClass('header-scrolled1');
+            $('#back-top').removeClass('back-top-animation');
+        }
+    });
+
+    /* ---------------------------------------------
+        scroll body to 0px on click
+     --------------------------------------------- */
+     $('#back-top a').on("click", function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 1000);
+        return false;
+    });
+
+    //------- Niceselect  js --------//  
+
+    if (document.getElementById("default-select")) {
+        $('select').niceSelect();
+    };
+    if (document.getElementById("service-select")) {
+        $('select').niceSelect();
+    };
+
+    //------- Pre Loader --------//  
+    $(window).on('load', function () {
+        $(".preloader-area").delay(200).fadeOut(500);
+    })
+
+    //------- Lightbox  js --------//  
+    $('.img-gal').magnificPopup({
+        type: 'image',
+        gallery: {
+            enabled: true
+        }
+    });
+
+
+    $('.play-btn').magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+    });
+
+    //------- Filter  js --------//  
+    $(window).on("load", function () {
+        $('.filters ul li').on("click", function () {
+            $('.filters ul li').removeClass('active');
+            $(this).addClass('active');
+
+            var data = $(this).attr('data-filter');
+            $grid.isotope({
+                filter: data
+            })
+        });
+
+
+        if (document.getElementById("work")) {
+            var $grid = $(".grid").isotope({
+                itemSelector: ".all",
+                percentPosition: true,
+                masonry: {
+                    columnWidth: ".all"
+                }
+            })
+        };
+    });
+
+    //------- Accordion  js --------//  
+
+    jQuery(document).ready(function ($) {
+
+        if (document.getElementById("accordion")) {
+
+            var accordion_1 = new Accordion(document.getElementById("accordion"), {
+                collapsible: false,
+                slideDuration: 500
+            });
+        }
+    });
+
+    //------- Circle Chart  js --------//  
+
+    if (document.getElementById("skills")) {
+
+        $('.skill-1').percentcircle({
+            animate: true,
+            diameter: 400,
+            guage: 5,
+            coverBg: '#fff',
+            bgColor: '#efefef',
+            fillColor: '#988fff',
+            percentSize: '24px',
+            percentWeight: 'normal'
+        });
+
+        $('.skill-2').percentcircle({
+            animate: true,
+            diameter: 400,
+            guage: 5,
+            coverBg: '#fff',
+            bgColor: '#efefef',
+            fillColor: '#988fff',
+            percentSize: '24px',
+            percentWeight: 'normal'
+        });
+
+        $('.skill-3').percentcircle({
+            animate: true,
+            diameter: 400,
+            guage: 5,
+            coverBg: '#fff',
+            bgColor: '#efefef',
+            fillColor: '#988fff',
+            percentSize: '24px',
+            percentWeight: 'normal'
+        });
+
+        $('.skill-4').percentcircle({
+            animate: true,
+            diameter: 400,
+            guage: 5,
+            coverBg: '#fff',
+            bgColor: '#efefef',
+            fillColor: '#988fff',
+            percentSize: '24px',
+            percentWeight: 'normal'
+        });
+
+    };
+
+    //------- Superfist nav menu  js --------//  
+
+    $('.nav-menu').superfish({
+        animation: {
+            opacity: 'show'
+        },
+        speed: 400
+    });
+
+    //------- Mobile Nav  js --------//  
+
+    if ($('#nav-menu-container').length) {
+        var $mobile_nav = $('#nav-menu-container').clone().prop({
+            id: 'mobile-nav'
+        });
+        $mobile_nav.find('> ul').attr({
+            'class': '',
+            'id': ''
+        });
+        $('body').append($mobile_nav);
+        $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>');
+        $('body').append('<div id="mobile-body-overly"></div>');
+        $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
+
+        $(document).on('click', '.menu-has-children i', function (e) {
+            $(this).next().toggleClass('menu-item-active');
+            $(this).nextAll('ul').eq(0).slideToggle();
+            $(this).toggleClass("lnr-chevron-up lnr-chevron-down");
+        });
+
+        $(document).on('click', '#mobile-nav-toggle', function (e) {
+            $('body').toggleClass('mobile-nav-active');
+            $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
+            $('#mobile-body-overly').toggle();
+        });
+
+        $(document).click(function (e) {
+            var container = $("#mobile-nav, #mobile-nav-toggle");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                if ($('body').hasClass('mobile-nav-active')) {
+                    $('body').removeClass('mobile-nav-active');
+                    $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
+                    $('#mobile-body-overly').fadeOut();
+                }
+            }
+        });
+    } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
+        $("#mobile-nav, #mobile-nav-toggle").hide();
+    }
+
+    //------- Smooth Scroll  js --------//  
+
+    $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            if (target.length) {
+                var top_space = 0;
+
+                if ($('#header').length) {
+                    top_space = $('#header').outerHeight();
+
+                    if (!$('#header').hasClass('header-fixed')) {
+                        top_space = top_space;
+                    }
+                }
+
+                $('html, body').animate({
+                    scrollTop: target.offset().top - top_space
+                }, 1500, 'easeInOutExpo');
+
+                if ($(this).parents('.nav-menu').length) {
+                    $('.nav-menu .menu-active').removeClass('menu-active');
+                    $(this).closest('li').addClass('menu-active');
+                }
+
+                if ($('body').hasClass('mobile-nav-active')) {
+                    $('body').removeClass('mobile-nav-active');
+                    $('#mobile-nav-toggle i').toggleClass('lnr-times lnr-bars');
+                    $('#mobile-body-overly').fadeOut();
+                }
+                return false;
+            }
+        }
+    });
+
+    $(document).ready(function () {
+
+        $('html, body').hide();
+
+        if (window.location.hash) {
+
+            setTimeout(function () {
+
+                $('html, body').scrollTop(0).show();
+
+                $('html, body').animate({
+
+                    scrollTop: $(window.location.hash).offset().top - 108
+
+                }, 1000)
+
+            }, 0);
+
+        } else {
+
+            $('html, body').show();
+
+        }
+
+    });
+
+    //------- Header Scroll Class  js --------//  
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('#header').addClass('header-scrolled');
+        } else {
+            $('#header').removeClass('header-scrolled');
+        }
+    });
+
+    //------- Owl Carusel  js --------//
+    if($('.active-brand-carusel').length) {
+        $('.active-brand-carusel').owlCarousel({
+            items: 5,
+            loop: true,
+            autoplayHoverPause: true,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 3,
+                },
+                991: {
+                    items: 4,
+                },
+                1024: {
+                    items: 5,
+                }
+            }
+        });
+    }
+
+    if ($('.testi_slider').length) {
+        $('.testi_slider').owlCarousel({
+            loop: true,
+            margin: 30,
+            items: 1,
+            nav: true,
+            autoplay: 2500,
+            smartSpeed: 1500,
+            dots: true,
+            responsiveClass: true,
+            navText : ["<i class='lnr lnr-arrow-left'></i>","<i class='lnr lnr-arrow-right'></i>"]
+        })
+    }
+
+    //------- Timer Countdown  js --------//  
+
+    if (document.getElementById("count")) {
+
+        var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="count"
+            document.getElementById("count").innerHTML =
+
+                "<div class='col'><span>" + days + "</span><br> Days " + "</div>" + "<div class='col'><span>" + hours + "</span><br> Hours " + "</div>" + "<div class='col'><span>" + minutes + "</span><br> Minutes " + "</div>" + "<div class='col'><span>" + seconds + "</span><br> Seconds </div>";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("count").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+    }
+
+    //------- Google Map  js --------//  
+
+    if (document.getElementById("map")) {
+        google.maps.event.addDomListener(window, 'load', init);
+
+        function init() {
+            var mapOptions = {
+                zoom: 11,
+                center: new google.maps.LatLng(40.6700, -73.9400), // New York
+                styles: [{
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#e9e9e9"
+                    }, {
+                        "lightness": 17
+                    }]
+                }, {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#f5f5f5"
+                    }, {
+                        "lightness": 20
+                    }]
+                }, {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }, {
+                        "lightness": 17
+                    }]
+                }, {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }, {
+                        "lightness": 29
+                    }, {
+                        "weight": 0.2
+                    }]
+                }, {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }, {
+                        "lightness": 18
+                    }]
+                }, {
+                    "featureType": "road.local",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }, {
+                        "lightness": 16
+                    }]
+                }, {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#f5f5f5"
+                    }, {
+                        "lightness": 21
+                    }]
+                }, {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#dedede"
+                    }, {
+                        "lightness": 21
+                    }]
+                }, {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [{
+                        "visibility": "on"
+                    }, {
+                        "color": "#ffffff"
+                    }, {
+                        "lightness": 16
+                    }]
+                }, {
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "saturation": 36
+                    }, {
+                        "color": "#333333"
+                    }, {
+                        "lightness": 40
+                    }]
+                }, {
+                    "elementType": "labels.icon",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                }, {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#f2f2f2"
+                    }, {
+                        "lightness": 19
+                    }]
+                }, {
+                    "featureType": "administrative",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#fefefe"
+                    }, {
+                        "lightness": 20
+                    }]
+                }, {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                        "color": "#fefefe"
+                    }, {
+                        "lightness": 17
+                    }, {
+                        "weight": 1.2
+                    }]
+                }]
+            };
+            var mapElement = document.getElementById('map');
+            var map = new google.maps.Map(mapElement, mapOptions);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(40.6700, -73.9400),
+                map: map,
+                title: 'Snazzy!'
+            });
+        }
+    }
+
+    //------- Mailchimp js --------//  
+
+    // $(document).ready(function () {
+    //     $('#mc_embed_signup').find('form').ajaxChimp();
+    // });
+
+});

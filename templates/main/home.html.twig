@@ -1,130 +1,620 @@
-{% extends 'base.html.twig' %}
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .vertical{
-            height: 60% ;!important;
-        }
-    </style>
-{% endblock %}
-{% block body %}
-    {{ parent() }}
-    {% block main %}
-        <div id="main">
-            <div class="inner">
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
 
-                <!-- Banner -->
-                <section id="banner">
-                    <div class="content">
-                        <header>
-                            <h1>Soluciones <br />
-                                Tecnológicas</h1>
-                            <p>Desarrollo de Software</p>
-                        </header>
-                        <p>Ing. en Sistemas dedicado al desarrollo de software, especializado en desarrollo de aplicaciones moviles, paginas web y bases de datos</p>
-                        <p>	Mi pasion es la programacion, actualmente desarrollando paginas web con:
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="images/logo.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Igmer Rodriguez</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900" rel="stylesheet">
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" href="{{ asset('css/linearicons.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/main.css')}}">
+</head>
+
+<body>
+
+<!-- Start Preloader Area -->
+<div class="preloader-area">
+    <div class="loader-box">
+        <div class="loader"></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+
+<!-- Start Header Area -->
+<header id="header">
+    <div class="container main-menu">
+        <div class="row align-items-center d-flex">
+            <div id="logo">
+                <a href="index.html"><img src="images/logo.png" alt="" title="" /></a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class=""><a class="active" href="index.html">Home</a></li>
+                    <li><a href="about.html">Igmer</a></li>
+                    <li><a href="portfolio.html">Portafolio</a></li>
+                    <li class="menu-has-children"><a href="#">Paginas</a>
                         <ul>
-                            <li>PHP - symfony</li>
-                            <li>Python - Django</li>
-                            <li>Javascript - NodeJS</li>
-                            <li>ASP.NET</li>
-                        </ul> </p>
-                        <p>Aplicaciones moviles:
+                            <li><a href="elements.html">Elementos</a></li>
+                            <li><a href="contact.html">Contactame</a></li>
+                            <li><a href="services.html">Servicios</a></li>
+                            <li><a href="portfolio-details.html">Detalle de Portafolio</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-has-children"><a href="">Blog</a>
                         <ul>
-                            <li>
-                                Android - Java
-                            </li>
-                            <li>Hibridas - IONIC- Cordova y ReactNative</li>
-                        </ul></p>
-                        <!-- <ul class="actions">
-                            <li><a href="#" class="button big">Learn More</a></li>
-                        </ul> -->
-                    </div>
-                    <span class="image object">
-										<img src="{{ asset('images/perfil.png') }}" alt="" />
-									</span>
-                </section>
+                            <li><a href="blog-home.html">Blog Home</a></li>
+                            <li><a href="blog-single.html">Blog Single</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- End Header Area -->
 
-                <!-- Section -->
-                <section>
-                    <header class="major">
-                        <h2>Mi Trabajo</h2>
-                    </header>
-                    <div class="features">
-                        <article>
-                            <span class="icon brands fa-chrome"></span>
-                            <div class="content">
-                                <h3>Analista Programador</h3>
-                                <p>Analista Programador en una entidad gubernamental, mi trabajo consiste en elaborar el Analisis y diseño de sistemas web usando PHP 7 con Symfony 2.8 y Sonata Project, PostgreSQL en sistemas Linux.</p>
-                            </div>
-                        </article>
-                        <article>
-                            <span class="icon solid fa-paper-plane"></span>
-                            <div class="content">
-                                <h3>Freelancer</h3>
-                                <p>Freelancer en <a href="https://www.workana.com/freelancer/78d7a0b74d5ab71cbc68ccbf6c3dd04f?ref=user_dropdown">Workana</a>, Me gusta realizar trabajos,  especialemente enfocados a desarrollo de aplicaciones moviles, ademas brindo asesoría en desarrollo de Apps Hibridas y nativas. </p>
-                            </div>
-                        </article>
-                        <article>
-                            <span class="icon solid fa-rocket"></span>
-                            <div class="content">
-                                <h3>Administración de Servidores</h3>
-                                <p>Administración y configuracion de servidores Linux, Mi entorno favorito para desarrollo e implementacion de sistemas es Debian y derivados. otros como Fedora, CentOS y RHEL</p>
-                            </div>
-                        </article>
 
-                    </div>
-                </section>
-
-                <!-- Section -->
-                <section>
-                    <header class="major">
-                        <h2>Portafolio</h2>
-                    </header>
-                    <div class="posts">
-                        <article>
-                            <a href="#" class="image"><img src="{{ asset('images/nexuss.jpg') }}" alt="StockApp" /></a>
-                            <h3>StockApp</h3>
-                            <p>Es una aplicacion movil que permite hacer ingresos, salidas, traslados y toma fisica de productos. Consume un Web Services SOAP</p>
-
-                        </article>
-                        <article>
-                            <a href="#" class="image"><img src="{{ asset('images/tbapp.jpg') }}" alt="AppTB"  /></a>
-                            <h3>AppTB</h3>
-                            <p>Aplicacion movil que permite manejar pacientes, casos y contactos, se puede registrar tratamiento y visitas. Trabaja de forma OffLine y sincroniza con un servidor remoto a peticion del usuario,creada con Android Nativa</p>
-
-                        </article>
-                        <article>
-                            <a href="#" class="image"><img src="{{ asset('images/malaria.png') }}" alt="MalariaApp"  /></a>
-                            <h3>MalariaApp</h3>
-                            <p>Aplicacion diseñada para recolectar datos de campo utilizando mapas de Google para geolocalizacion, Android Nativa</p>
-
-                        </article>
-
-                        <article>
-                            <a href="#" class="image"><img src="{{ asset('images/web.png') }}" alt="SINAVEC"  /></a>
-                            <h3>SINAVEC</h3>
-                            <p>Sistema Web Utilizado par el registro de información de vectores, cuenta con 5 modulos de ingreso de datos y 2 de reportería, creada con PHP y Symfony</p>
-
-                        </article>
-                        <article>
-                            <a href="#" class="image vertical"><img src="{{ asset('images/vitro.png') }}" alt="VitroApp"  /></a>
-                            <h3>VitroApp</h3>
-                            <p>Progressive Web App para el control de citas, tratamiento y expediente de una clinica de fertilidad, esta creada con IONIC 4 y Angular 8</p>
-
-                        </article>
-                        <article>
-                            <a href="#" class="image vertical"><img src="{{ asset('images/foodapp.png') }}" alt="FoodApp"  /></a>
-                            <h3>FoodApp</h3>
-                            <p>Aplicacion que permite el control de clientes y pedidos de productos, incluye geolocalizacion de clientes,pedidos y usuario</p>
-
-                        </article>
-
-                    </div>
-                </section>
-
+<!-- start banner Area -->
+<section class="home-banner-area">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center">
+            <div class="banner-content col-lg-6 col-md-12 justify-content-center ">
+                <div class="me wow fadeInDown" data-wow-duration="1s" data-wow-delay="1.2s">Soy</div>
+                <h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.7s">Igmer Rodríguez</h1>
+                <div class="designation mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay="2.1s">
+                    Ingeniero en Sistemas
+                    <span class="designer">Analista</span>
+                    ,Desarrollador de Sistemas y
+                    <span class="developer">Aplicaciones</span>
+                </div>
+                <a href="https://www.workana.com/freelancer/78d7a0b74d5ab71cbc68ccbf6c3dd04f" class="primary-btn" data-text="Contratar">
+                    <span>C</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>t</span>
+                    <span>r</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>r</span>
+                </a>
+            </div>
+            <div class="banner-img col-lg-6 col-md-6 align-self-end">
+                <img class="img-fluid" src="images/banner-img.png" alt="">
             </div>
         </div>
-    {% endblock main %}
+    </div>
+</section>
+<!-- End banner Area -->
 
-{% endblock %}
+
+<!-- Start brands Area -->
+<section class="brands-area">
+    <div class="container">
+        <div class="brand-wrap">
+            <div class="row align-items-center active-brand-carusel justify-content-start no-gutters">
+                <div class="col single-brand">
+                    <a href="#"><img class="mx-auto" src="images/brand/b1.png" alt=""></a>
+                </div>
+                <div class="col single-brand">
+                    <a href="#"><img class="mx-auto" src="images/brand/b2.png" alt=""></a>
+                </div>
+                <div class="col single-brand">
+                    <a href="#"><img class="mx-auto" src="images/brand/b3.png" alt=""></a>
+                </div>
+                <div class="col single-brand">
+                    <a href="#"><img class="mx-auto" src="images/brand/b4.png" alt=""></a>
+                </div>
+                <div class="col single-brand">
+                    <a href="#"><img class="mx-auto" src="images/brand/b5.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End brands Area -->
+
+
+<!-- Start About Area -->
+<section class="about-area section-gap">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-6 about-left">
+                <img class="img-fluid" src="images/about-img.png" alt="">
+            </div>
+            <div class="col-lg-5 col-md-12 about-right">
+                <div class="section-title">
+                    <h2>Sobre mi</h2>
+                </div>
+                <div class="mb-50 wow fadeIn" data-wow-duration=".8s">
+                    <p>
+                        Soy ingeniero en sistemas dedicado a la programacion, Mi habilidad principal está en el desarrollo de aplicaciones moviles nativas e hibridas,
+                         ademas el desarrollo web utilizando PHP con Symfony, ASP.NET y JAVA
+                    </p>
+                    Me apasiona la programación y los retos nuevos que me llevan a aprender algo nuevo cada día.
+                    <p>
+                    </p>
+                </div>
+                <a href="#" class="primary-btn white" data-text="More Info">
+                    <span>M</span>
+                    <span>o</span>
+                    <span>r</span>
+                    <span>e</span>
+                    <span> </span>
+                    <span>I</span>
+                    <span>n</span>
+                    <span>f</span>
+                    <span>o</span>
+                </a>
+                <a href="#" class="primary-btn" data-text="Resume">
+                    <span>R</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>u</span>
+                    <span>m</span>
+                    <span>e</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About Area -->
+
+
+<!-- Start Work Area Area -->
+<section class="work-area section-gap-top section-gap-bottom-90" id="work">
+    <div class="container">
+        <div class="row d-flex justify-content-between align-items-end mb-80">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>Mis Proyectos</h2>
+                    <p>He creado aplicaciones principalmente del tipo empresarial, resolviendo necesidades especificas de los clientes (Inventario, Pedidos, Seguimiento clinico).</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="filters">
+                    <ul>
+                        <li class="active" data-filter=".all">All Categories</li>
+                        <li data-filter=".branding">Branding</li>
+                        <li data-filter=".creative">Creative Work</li>
+                        <li data-filter=".web-design">Web Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters-content">
+            <div class="row grid">
+                <div class="single-work col-lg-4 col-md-6 col-sm-12 all creative wow fadeInUp" data-wow-duration="2s">
+                    <div class="relative">
+                        <div class="thumb">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="image img-fluid" src="images/work/w1.jpg" alt="">
+                        </div>
+                        <div class="middle">
+                            <h4>Aplicacion de Seguimiento clinico</h4>
+                            <div class="cat">Ministerio de Salud</div>
+                        </div>
+                        <a class="overlay" href="portfolio-details.html"></a>
+                    </div>
+                </div>
+                <div class="single-work col-lg-4 col-md-6 col-sm-12 all web-design branding wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+                    <div class="relative">
+                        <div class="thumb">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="image img-fluid" src="images/work/w2.jpg" alt="">
+                        </div>
+                        <div class="middle">
+                            <h4>APlicacion de vectores</h4>
+                            <div class="cat">Ministerio de Salud</div>
+                        </div>
+                        <a class="overlay" href="portfolio-details.html"></a>
+                    </div>
+                </div>
+                <div class="single-work col-lg-4 col-md-6 col-sm-12 all branding web-design wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
+                    <div class="relative">
+                        <div class="thumb">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="image img-fluid" src="images/work/w3.jpg" alt="">
+                        </div>
+                        <div class="middle">
+                            <h4>Aplicacion de seguimiento clínico</h4>
+                            <div class="cat">Clínica InVitro</div>
+                        </div>
+                        <a class="overlay" href="portfolio-details.html"></a>
+                    </div>
+                </div>
+                <div class="single-work col-lg-4 col-md-6 col-sm-12 all web-design wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
+                    <div class="relative">
+                        <div class="thumb">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="image img-fluid" src="images/work/w6.jpg" alt="">
+                        </div>
+                        <div class="middle">
+                            <h4>Control de inventario</h4>
+                            <div class="cat">IT Outsourcing</div>
+                        </div>
+                        <a class="overlay" href="portfolio-details.html"></a>
+                    </div>
+                </div>
+                <div class="single-work col-lg-4 col-md-6 col-sm-12 all creative wow fadeInUp" data-wow-duration="2s">
+                    <div class="relative">
+                        <div class="thumb">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="image img-fluid" src="images/work/w4.jpg" alt="">
+                        </div>
+                        <div class="middle">
+                            <h4>Control de Pedidos</h4>
+                            <div class="cat">IT Outsourcing</div>
+                        </div>
+                        <a class="overlay" href="portfolio-details.html"></a>
+                    </div>
+                </div>
+                <div class="single-work col-lg-4 col-md-6 col-sm-12 all branding wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+                    <div class="relative">
+                        <div class="thumb">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="image img-fluid" src="images/work/w5.jpg" alt="">
+                        </div>
+                        <div class="middle">
+                            <h4>Aquí irá tu proyecto</h4>
+                            <div class="cat">Tu</div>
+                        </div>
+                        <a class="overlay" href="portfolio-details.html"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Work Area Area -->
+
+
+<!-- Start Job History Area Area -->
+<section class="job-area section-gap-top section-gap-bottom-90">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Historia Laboral</h2>
+                    <p>Inicie mi vida laboral a los 18 años, desde entonces gracias a Dios no ha faltado el trabajo lo que me ha permitido adquirir experiencia en diferentes areas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="single-job">
+                    <div class="top-sec d-flex justify-content-between">
+                        <div class="top-left">
+                            <h4>Analista Programador</h4>
+                            <p>Ministerio de Salud</p>
+                        </div>
+                        <div class="top-right">
+                            <a href="#" class="primary-btn" data-text="Oct 2017 a Presente">
+                                <span>O</span><span>c</span><span>t</span>
+                                <span>2</span><span>0</span><span>1</span><span>7</span>
+                                <span>a</span><span></span>
+                                <span>P</span><span>r</span><span>e</span><span>s</span><span>e</span><span>n</span><span>t</span><span>e</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bottom-sec wow fadeIn" data-wow-duration="2s">
+                        Analista Programador desarrollando sistemas de información para distintas áreas del Ministerio de Salud, Trabajando con PHP Symfony,Java Android, Nodej y de vez en cuando Spring MVC, Ademas administrando Base de Datos relacionales como PostgreSQL, SQLServer, MySQL
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="single-job">
+                    <div class="top-sec d-flex justify-content-between">
+                        <div class="top-left">
+                            <h4>Supervisor de Personal</h4>
+                            <p>Ministerio de Salud</p>
+                        </div>
+                        <div class="top-right">
+                            <a href="#" class="primary-btn" data-text="Enero 2011">
+                                <span>E</span><span>n</span><span>e</span><span>r</span><span>o</span>
+                                <span>2</span><span>0</span><span>1</span><span>1</span>
+
+
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bottom-sec wow fadeIn" data-wow-duration="2s" data-wow-delay="0.2s">
+                        Supervisor del personal que labora en Salud Comunitaria, encargado del tareas administrativas y dirigir al personal en las actividades programadas.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="single-job">
+                    <div class="top-sec d-flex justify-content-between">
+                        <div class="top-left">
+                            <h4>Freelancer</h4>
+                            <p>Workana</p>
+                        </div>
+                        <div class="top-right">
+                            <a href="#" class="primary-btn" data-text="Julio 2019">
+                                <span>J</span><span>u</span><span>l</span><span>i</span><span>o</span>
+                                <span>2</span><span>0</span><span>1</span><span>9</span>
+                                </a>
+                        </div>
+                    </div>
+                    <div class="bottom-sec wow fadeIn" data-wow-duration="2s" data-wow-delay="0.4s">
+                       <p> Freelancer especializado en desarrollo de aplicaciones Android, IONIC, y Reac Native, Desarrollo de sitios web PHP y NodeJS</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="single-job">
+                    <div class="top-sec d-flex justify-content-between">
+                        <div class="top-left">
+                            <h4>Auxiliar contable</h4>
+                            <p>Cooperativa agricola</p>
+                        </div>
+                        <div class="top-right">
+                            <a href="#" class="primary-btn" data-text="Enero 2007">
+                                <span>E</span><span>n</span><span>e</span><span>r</span><span>o</span>
+                                <span>2</span><span>0</span><span>0</span><span>7</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bottom-sec wow fadeIn" data-wow-duration="2s" data-wow-delay="0.6s">
+                       Auxiliar contable en cooperativa agricola, encargado de libro diario y estados financieros
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Job Historyt Area Area -->
+
+
+<!-- Start Service Area -->
+<section class="service-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Mis servicios</h2>
+                    <p>Igmer Rodriguez puede ofrecerte sus servicios en las siguientes áreas.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-service wow fadeInUp" data-wow-duration="1s">
+                    <span class="lnr lnr-screen"></span>
+                    <h4>
+                        <span>Sistemas</span> web
+                    </h4>
+                    <p>Crear sistemas web en PHP con symfony o laravel, NodeJS, Java Spring y ASP.NET</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <span class="lnr lnr-laptop-phone"></span>
+                    <h4><span>Desarrollo </span> de aplicaciones
+                    </h4>
+                    <p>Desarrollar aplicaciones moviles segun tu necesidad, nativas o hibridas multiplataforma.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+                    <span class="lnr lnr-database"></span>
+                    <h4><span>Bases de</span> Datos
+                    </h4>
+                    <p>Administracion y configuracion de bases de datos en PostgreSQl, MySQL, SQL Server y Oracle.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+                    <span class="lnr lnr-chart-bars"></span>
+                    <h4><span>Administracion de Servidores</span>
+                    </h4>
+                    <p>Administracion y configuracion de servidores Linux, Windows , en la nube de Azure o AWS .</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Service Area -->
+
+
+<!-- Start Testimonials Area -->
+<section class="testimonials_area section-gap">
+    <div class="container">
+        <div class="testi_slider owl-carousel">
+            <div class="item">
+                <div class="testi_item">
+                    <img src="images/quote.png" alt="">
+                    <h4>Calificación de clientes</h4>
+                    <ul class="list">
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                    </ul>
+                    <div class="wow fadeIn" data-wow-duration="1s">
+                        <img src="images/clientes/c1.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testi_item">
+                    <img src="images/quote.png" alt="">
+                    <h4>Calificación de clientes</h4>
+                    <ul class="list">
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                    </ul>
+                    <div class="wow fadeIn" data-wow-duration="1s">
+                        <img src="images/clientes/c2.jpg">
+
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testi_item">
+                    <img src="images/quote.png" alt="">
+                    <h4>Calificación de clientes</h4>
+                    <ul class="list">
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                    </ul>
+                    <div class="wow fadeIn" data-wow-duration="1s">
+                        <img src="images/clientes/c3.jpg">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Testimonials Area -->
+
+
+<!-- Start Contact Area -->
+<section class="contact-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact-title">
+                    <h2>Contactame</h2>
+                    <p>Nececistas un sistema? o talvez una aplicación? tu sitio tiene un virus?. Puedes contactarme y trabajamos ;)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-80">
+            <div class="col-lg-4 col-md-4">
+                <div class="contact-box">
+                    <h4>+503 7747 6504</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="contact-box">
+                    <h4>igmerdz@gmail.comx</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="contact-box">
+                    <h4>igmer-rodriguez.com</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+
+                <a  href="https://www.workana.com/freelancer/78d7a0b74d5ab71cbc68ccbf6c3dd04f"  class="primary-btn mt-50" data-text="Contratar">
+                    <span>C</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>t</span>
+                    <span>r</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>r</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Contact Area -->
+
+
+<!-- start footer Area -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="footer-top flex-column">
+                    <div class="footer-logo">
+                        <a href="#">
+                            <img src="images/logo.png" alt="">
+                        </a>
+                        <h4>Follow Me</h4>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row footer-bottom justify-content-center">
+            <p class="col-lg-8 col-sm-12 footer-text">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+    </div>
+</footer>
+<!-- End footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+    <a title="Go to Top" href="#">
+        <i class="lnr lnr-arrow-up"></i>
+    </a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->
+
+<script src="{{ asset('js/vendor/jquery-2.2.4.min.js')}} " ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="{{ asset('js/vendor/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script src="{{ asset('js/easing.min.js')}}"></script>
+<script src="{{ asset('js/hoverIntent.js')}}"></script>
+<script src="{{ asset('js/superfish.min.js')}}"></script>
+<script src="{{ asset('js/mn-accordion.js')}}"></script>
+<script src="{{ asset('js/jquery.ajaxchimp.min.js')}}"></script>
+<script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{ asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('js/jquery.nice-select.min.js')}}"></script>
+<script src="{{ asset('js/isotope.pkgd.min.js')}}"></script>
+<script src="{{ asset('js/jquery.circlechart.js')}}"></script>
+<script src="{{ asset('js/mail-script.js')}}"></script>
+<script src="{{ asset('js/wow.min.js')}}"></script>
+<script src="{{ asset('js/main.js')}}"></script>
+</body>
+
+</html>
