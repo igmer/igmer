@@ -20,6 +20,15 @@ class MainController extends Controller
                 return $response;
     }
     /**
+     * @Route("mihistoria", name="mihistoria")
+     */
+    public function portafolio()
+    {
+
+        $response = $this->render('main/mihistoria.html.twig');
+                return $response;
+    }
+    /**
      * @Route("crearcv", name="crearcv")
      */
     public function crearcv()
@@ -28,13 +37,13 @@ class MainController extends Controller
         $response = $this->render('utilidades/crearcv.html.twig');
         return $response;
     }
-    /**
-     * @Route("mihistoria", name="mihistoria")
-     */
-    public function miHistoria()
-    {
-
-        $response = $this->render('historia/mihistoria.html.twig');
-        return $response;
-    }
+//    /**
+//     * @Route("mihistoria", name="mihistoria")
+//     */
+//    public function miHistoria()
+//    {
+//
+//        $response = $this->render('historia/mihistoria.html.twig');
+//        return $response;
+//    }
 }
